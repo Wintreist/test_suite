@@ -173,7 +173,14 @@ curl "http://localhost:8888/current_test"
 
 ```bash
 # Автоматически определяет ОС и собирает для текущей платформы
-python build.py
+# Windows:
+build.bat
+
+# Linux/macOS:
+./build.sh
+
+# Или напрямую:
+python build_scripts/build.py
 ```
 
 ### Сборка для конкретной платформы
@@ -181,19 +188,19 @@ python build.py
 **Windows:**
 ```cmd
 # Из папки test_suite_executor на Windows
-build_windows.bat
+build_scripts\build_windows.bat
 ```
 
 **Linux:**
 ```bash
 # Из папки test_suite_executor на Linux
-./build_linux.sh
+./build_scripts/build_linux.sh
 ```
 
 **Windows (альтернативный способ):**
 ```cmd
 # Сборка только для Windows с инструкциями для Linux
-build_all.bat
+build_scripts\build_all.bat
 ```
 
 ### Использование исполняемых файлов

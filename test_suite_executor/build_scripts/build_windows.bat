@@ -10,6 +10,8 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b 1
 )
 
+cd /d "%~dp0.."
+
 echo [1/4] Синхронизация зависимостей...
 uv sync
 if %ERRORLEVEL% NEQ 0 (
@@ -25,7 +27,7 @@ if %ERRORLEVEL% NEQ 0 (
 )
 
 echo [3/4] Создание исполняемого файла...
-uv run pyinstaller test_suite_executor.spec --clean
+uv run pyinstaller build_scripts\test_suite_executor.spec --clean
 if %ERRORLEVEL% NEQ 0 (
     echo ОШИБКА: Не удалось создать исполняемый файл
     exit /b 1

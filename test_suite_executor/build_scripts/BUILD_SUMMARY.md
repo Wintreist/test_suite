@@ -11,6 +11,7 @@
 
 ## Новые файлы
 
+### В директории `build_scripts/`:
 | Файл | Назначение |
 |------|-----------|
 | `test_suite_executor.spec` | Конфигурация PyInstaller |
@@ -19,6 +20,12 @@
 | `build_all.bat` | Сборка Windows + инструкции для Linux |
 | `build.py` | Универсальный скрипт (автоопределение ОС) |
 | `BUILD_TROUBLESHOOTING.md` | Устранение неполадок |
+
+### В корне проекта:
+| Файл | Назначение |
+|------|-----------|
+| `build.bat` | Wrapper для Windows |
+| `build.sh` | Wrapper для Linux/macOS |
 
 ## Обновленные файлы
 
@@ -32,7 +39,15 @@
 ### Универсальная сборка (рекомендуется)
 ```bash
 cd test_suite_executor
-python build.py
+
+# Windows:
+build.bat
+
+# Linux/macOS:
+./build.sh
+
+# Или напрямую:
+python build_scripts/build.py
 ```
 
 ### Сборка для конкретной платформы
@@ -40,19 +55,19 @@ python build.py
 **Windows:**
 ```cmd
 cd test_suite_executor
-build_windows.bat
+build_scripts\build_windows.bat
 ```
 
 **Linux/macOS:**
 ```bash
 cd test_suite_executor
-./build_linux.sh
+./build_scripts/build_linux.sh
 ```
 
 **Windows (альтернативно):**
 ```cmd
 cd test_suite_executor
-build_all.bat
+build_scripts\build_all.bat
 ```
 
 ## Результат

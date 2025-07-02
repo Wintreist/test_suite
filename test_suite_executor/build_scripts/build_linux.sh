@@ -4,6 +4,9 @@ echo "========================================"
 echo "  Сборка test-suite-executor для Linux"
 echo "========================================"
 
+# Переходим в родительскую директорию
+cd "$(dirname "$0")/.."
+
 # Проверяем наличие uv
 if ! command -v uv &> /dev/null; then
     echo "ОШИБКА: uv не установлен. Установите uv сначала."
@@ -26,7 +29,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "[3/4] Создание исполняемого файла..."
-uv run pyinstaller test_suite_executor.spec --clean
+uv run pyinstaller build_scripts/test_suite_executor.spec --clean
 if [ $? -ne 0 ]; then
     echo "ОШИБКА: Не удалось создать исполняемый файл"
     exit 1

@@ -8,7 +8,7 @@ echo        Для Linux используйте: ./build_linux.sh
 echo.
 
 echo [ЭТАП 1] Сборка для Windows...
-call build_windows.bat
+call "%~dp0build_windows.bat"
 if %ERRORLEVEL% NEQ 0 (
     echo ❌ Ошибка при сборке Windows версии
     echo ========================================

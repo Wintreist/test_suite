@@ -1,16 +1,20 @@
 # -*- mode: python ; coding: utf-8 -*-
 import sys
+import os
 from pathlib import Path
 
+# Получаем путь к родительской директории (test_suite_executor)
+project_root = Path(__file__).parent.parent
+
 # Добавляем путь к модулю test_suite
-sys.path.insert(0, str(Path('../test_suite/src').resolve()))
+sys.path.insert(0, str(project_root.parent / 'test_suite' / 'src'))
 
 a = Analysis(
-    ['src/test_suite_executor/runner.py'],
-    pathex=[],
+    [str(project_root / 'src' / 'test_suite_executor' / 'runner.py')],
+    pathex=[str(project_root)],
     binaries=[],
     datas=[
-        ('pyproject.toml', '.'),
+        (str(project_root / 'pyproject.toml'), '.'),
     ],
     hiddenimports=[
         'test_suite_executor',

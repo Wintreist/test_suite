@@ -24,7 +24,7 @@ def main():
         print("🪟 Запуск сборки для Windows...")
         script = "build_windows.bat"
         try:
-            result = subprocess.run([script], shell=True, check=True)
+            result = subprocess.run([script], shell=True, check=True, cwd=os.path.dirname(__file__))
             print("✅ Сборка Windows завершена успешно!")
         except subprocess.CalledProcessError as e:
             print(f"❌ Ошибка при сборке Windows: {e}")
@@ -32,15 +32,15 @@ def main():
             
     elif system == "linux":
         print("🐧 Запуск сборки для Linux...")
-        script = "./build_linux.sh"
+        script_path = os.path.join(os.path.dirname(__file__), "build_linux.sh")
         
         # Проверяем что скрипт исполняемый
-        if not os.access("build_linux.sh", os.X_OK):
+        if not os.access(script_path, os.X_OK):
             print("Делаем скрипт исполняемым...")
-            os.chmod("build_linux.sh", 0o755)
+            os.chmod(script_path, 0o755)
             
         try:
-            result = subprocess.run([script], check=True)
+            result = subprocess.run([script_path], check=True)
             print("✅ Сборка Linux завершена успешно!")
         except subprocess.CalledProcessError as e:
             print(f"❌ Ошибка при сборке Linux: {e}")
@@ -49,15 +49,15 @@ def main():
     elif system == "darwin":
         print("🍎 macOS обнаружена")
         print("Попробуем использовать Linux скрипт...")
-        script = "./build_linux.sh"
+        script_path = os.path.join(os.path.dirname(__file__), "build_linux.sh")
         
         # Проверяем что скрипт исполняемый
-        if not os.access("build_linux.sh", os.X_OK):
+        if not os.access(script_path, os.X_OK):
             print("Делаем скрипт исполняемым...")
-            os.chmod("build_linux.sh", 0o755)
+            os.chmod(script_path, 0o755)
             
         try:
-            result = subprocess.run([script], check=True)
+            result = subprocess.run([script_path], check=True)
             print("✅ Сборка macOS завершена успешно!")
         except subprocess.CalledProcessError as e:
             print(f"❌ Ошибка при сборке macOS: {e}")
@@ -74,7 +74,7 @@ def main():
     print("=" * 50)
     
     # Показываем результат
-    dist_dir = "dist"
+    dist_dir = os.path.join(os.path.dirname(__file__), "..", "dist")
     if os.path.exists(dist_dir):
         print("Созданные файлы:")
         for file in os.listdir(dist_dir):
