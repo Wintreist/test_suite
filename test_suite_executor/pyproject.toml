@@ -16,6 +16,9 @@ dependencies = [
     "uvicorn[standard]>=0.35.0",
 ]
 
+[project.scripts]
+test-suite-executor = "test_suite_executor.runner:main"
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
@@ -23,3 +26,8 @@ build-backend = "hatchling.build"
 [tool.uv.sources]
 test-suite = { path = "../test_suite", editable = true }
 object-storage = { git = "ssh://git@src.axxonsoft.dev/qa/python_shared_modules_git.git", subdirectory = "object_storage", branch = "experemental" }
+
+[dependency-groups]
+dev = [
+    "pyinstaller>=6.0.0",
+]

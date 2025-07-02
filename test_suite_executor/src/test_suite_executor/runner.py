@@ -1,17 +1,12 @@
 def application():
-    from pathlib import Path
-
-    import tomllib
     from fastapi import FastAPI
 
     from test_suite_executor.server.run_suite import router
-
-    pyproject = tomllib.loads(Path("pyproject.toml").read_text())
-    project = pyproject["project"]
+    from test_suite_executor._version import __title__, __version__
 
     app = FastAPI(
-        title=project["name"],
-        version=project["version"],
+        title=__title__,
+        version=__version__,
     )
     app.include_router(router)
     return app

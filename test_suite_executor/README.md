@@ -154,6 +154,65 @@ curl "http://localhost:8888/test_status/550e8400-e29b-41d4-a716-446655440000"
 curl "http://localhost:8888/current_test"
 ```
 
+## Сборка исполняемых файлов
+
+Проект поддерживает создание исполняемых файлов для Windows (exe) и Linux (bin) с использованием PyInstaller.
+
+### Предварительные требования
+
+**Общие требования:**
+- [uv](https://github.com/astral-sh/uv) - менеджер пакетов Python
+- Python 3.12+
+
+**Платформы:**
+- Windows 10/11 - для сборки Windows exe
+- Linux - для сборки Linux bin
+- macOS - для сборки macOS bin (экспериментально)
+
+### Универсальная сборка (рекомендуется)
+
+```bash
+# Автоматически определяет ОС и собирает для текущей платформы
+# Windows:
+build.bat
+
+# Linux/macOS:
+./build.sh
+
+# Или напрямую:
+python build_scripts/build.py
+```
+
+### Сборка для конкретной платформы
+
+**Windows:**
+```cmd
+# Из папки test_suite_executor на Windows
+build_scripts\build_windows.bat
+```
+
+**Linux:**
+```bash
+# Из папки test_suite_executor на Linux
+./build_scripts/build_linux.sh
+```
+
+
+
+### Использование исполняемых файлов
+
+**Windows:**
+```cmd
+.\dist\test-suite-executor.exe
+```
+
+**Linux:**
+```bash
+./dist/test-suite-executor
+```
+
+Исполняемые файлы самодостаточны и не требуют установки Python или зависимостей. Они содержат встроенную информацию о версии и названии проекта.
+
 ## Настройка
 
 Приложение можно настроить через переменные окружения:
