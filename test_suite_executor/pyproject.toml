@@ -9,6 +9,7 @@ requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.115.14",
     "gitpython>=3.1.44",
+    "object-storage",
     "pydantic>=2.11.7",
     "pydantic-settings>=2.10.1",
     "test-suite[pytest]",
@@ -21,3 +22,4 @@ build-backend = "hatchling.build"
 
 [tool.uv.sources]
 test-suite = { path = "../test_suite", editable = true }
+object-storage = { git = "ssh://git@src.axxonsoft.dev/qa/python_shared_modules_git.git", subdirectory = "object_storage", branch = "experemental" }
