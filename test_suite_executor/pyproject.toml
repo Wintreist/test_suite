@@ -14,7 +14,11 @@ dependencies = [
     "pydantic-settings>=2.10.1",
     "test-suite[pytest]",
     "uvicorn[standard]>=0.35.0",
+    "pyinstaller>=6.0.0",
 ]
+
+[project.scripts]
+test-suite-executor = "test_suite_executor.runner:main"
 
 [build-system]
 requires = ["hatchling"]
