@@ -3,20 +3,21 @@
 ## Что добавлено
 
 В проект `test_suite_executor` добавлена возможность создания исполняемых файлов для:
-- **Windows** (.exe)
-- **Linux** (bin)
+- **Windows** (.exe) - собирается на Windows
+- **Linux** (bin) - собирается на Linux  
+- **macOS** (bin) - собирается на macOS (экспериментально)
 
-Сборка происходит из Windows с использованием PyInstaller и Docker.
+Каждая платформа собирается нативно на соответствующей ОС.
 
 ## Новые файлы
 
 | Файл | Назначение |
 |------|-----------|
 | `test_suite_executor.spec` | Конфигурация PyInstaller |
-| `build_windows.bat` | Сборка Windows exe |
-| `build_linux.bat` | Сборка Linux bin через Docker |
-| `build_all.bat` | Сборка всех платформ |
-| `Dockerfile.build` | Docker образ для Linux сборки |
+| `build_windows.bat` | Сборка Windows exe (только Windows) |
+| `build_linux.sh` | Сборка Linux/macOS bin |
+| `build_all.bat` | Сборка Windows + инструкции для Linux |
+| `build.py` | Универсальный скрипт (автоопределение ОС) |
 | `BUILD_TROUBLESHOOTING.md` | Устранение неполадок |
 
 ## Обновленные файлы
@@ -28,19 +29,27 @@
 
 ## Быстрый старт
 
-### Сборка Windows exe
+### Универсальная сборка (рекомендуется)
+```bash
+cd test_suite_executor
+python build.py
+```
+
+### Сборка для конкретной платформы
+
+**Windows:**
 ```cmd
 cd test_suite_executor
 build_windows.bat
 ```
 
-### Сборка Linux bin (требует Docker)
-```cmd
+**Linux/macOS:**
+```bash
 cd test_suite_executor
-build_linux.bat
+./build_linux.sh
 ```
 
-### Сборка всех платформ
+**Windows (альтернативно):**
 ```cmd
 cd test_suite_executor
 build_all.bat
@@ -75,4 +84,8 @@ build_all.bat
 
 ---
 
-✅ **Задача выполнена**: Добавлена возможность создания exe и bin файлов из Windows
+✅ **Задача выполнена**: Добавлена возможность создания exe и bin файлов
+- Windows exe собирается на Windows
+- Linux bin собирается на Linux  
+- Универсальный скрипт для автоматического определения ОС
+- Больше не требуется Docker для кроссплатформенной сборки

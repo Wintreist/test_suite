@@ -27,23 +27,38 @@
 2. Попробуйте очистить кеш: `uv cache clean`
 3. Удалите папки `build` и `dist` и попробуйте снова
 
-### Linux (Docker)
+### Linux/macOS
 
-#### Ошибка: "Docker не установлен или не запущен"
+#### Ошибка: "permission denied" при запуске скрипта
 **Решение:**
-1. Установите Docker Desktop
-2. Запустите Docker Desktop
-3. Проверьте: `docker --version`
+```bash
+chmod +x build_linux.sh
+./build_linux.sh
+```
 
-#### Ошибка: "permission denied" при копировании файлов
+#### Ошибка: "uv не установлен"
 **Решение:**
-1. Убедитесь что Docker Desktop запущен с правами администратора
-2. Проверьте права доступа к папке проекта
+```bash
+# Установка uv на Linux/macOS
+curl -LsSf https://astral.sh/uv/install.sh | sh
+source ~/.bashrc
+```
 
-#### Медленная сборка Docker образа
-**Причина:** Первая сборка может занять много времени из-за загрузки базового образа и зависимостей.
+#### Проблемы с зависимостями на Linux
+**Возможные причины:**
+- Отсутствуют системные библиотеки
+- Проблемы с SSL сертификатами
 
-**Решение:** Дождитесь завершения. Последующие сборки будут быстрее благодаря кешированию.
+**Решение:**
+```bash
+# Ubuntu/Debian
+sudo apt-get update
+sudo apt-get install build-essential libssl-dev libffi-dev
+
+# CentOS/RHEL
+sudo yum groupinstall "Development Tools"
+sudo yum install openssl-devel libffi-devel
+```
 
 ### Общие проблемы
 

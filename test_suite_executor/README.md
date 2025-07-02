@@ -160,35 +160,39 @@ curl "http://localhost:8888/current_test"
 
 ### Предварительные требования
 
-**Для Windows:**
+**Общие требования:**
 - [uv](https://github.com/astral-sh/uv) - менеджер пакетов Python
-- Windows 10/11
+- Python 3.12+
 
-**Для Linux (через Docker):**
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) - для кроссплатформенной сборки
+**Платформы:**
+- Windows 10/11 - для сборки Windows exe
+- Linux - для сборки Linux bin
+- macOS - для сборки macOS bin (экспериментально)
 
-### Сборка для Windows
+### Универсальная сборка (рекомендуется)
 
+```bash
+# Автоматически определяет ОС и собирает для текущей платформы
+python build.py
+```
+
+### Сборка для конкретной платформы
+
+**Windows:**
 ```cmd
-# Из папки test_suite_executor
+# Из папки test_suite_executor на Windows
 build_windows.bat
 ```
 
-Результат: `dist\test-suite-executor.exe`
-
-### Сборка для Linux
-
-```cmd
-# Из папки test_suite_executor (требует Docker)
-build_linux.bat
+**Linux:**
+```bash
+# Из папки test_suite_executor на Linux
+./build_linux.sh
 ```
 
-Результат: `dist\test-suite-executor`
-
-### Сборка для всех платформ
-
+**Windows (альтернативный способ):**
 ```cmd
-# Сборка Windows и Linux версий одновременно
+# Сборка только для Windows с инструкциями для Linux
 build_all.bat
 ```
 
