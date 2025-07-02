@@ -12,21 +12,28 @@ if %ERRORLEVEL% NEQ 0 (
 
 cd /d "%~dp0.."
 
-echo [1/3] Синхронизация зависимостей (включая dev)...
+echo [1/4] Обновление версии из pyproject.toml...
+python "%~dp0update_version.py"
+if %ERRORLEVEL% NEQ 0 (
+    echo ОШИБКА: Не удалось обновить версию
+    exit /b 1
+)
+
+echo [2/4] Синхронизация зависимостей (включая dev)...
 uv sync --dev
 if %ERRORLEVEL% NEQ 0 (
     echo ОШИБКА: Не удалось синхронизировать зависимости
     exit /b 1
 )
 
-echo [2/3] Создание исполняемого файла...
+echo [3/4] Создание исполняемого файла...
 uv run pyinstaller build_scripts\test_suite_executor.spec --clean
 if %ERRORLEVEL% NEQ 0 (
     echo ОШИБКА: Не удалось создать исполняемый файл
     exit /b 1
 )
 
-echo [3/3] Проверка результата...
+echo [4/4] Проверка результата...
 if exist "dist\test-suite-executor.exe" (
     echo ✅ Успешно создан: dist\test-suite-executor.exe
     dir dist\test-suite-executor.exe

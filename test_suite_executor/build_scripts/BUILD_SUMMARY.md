@@ -18,6 +18,7 @@
 | `build_windows.bat` | Сборка Windows exe (только Windows) |
 | `build_linux.sh` | Сборка Linux/macOS bin |
 | `build.py` | Универсальный скрипт (автоопределение ОС) |
+| `update_version.py` | Синхронизация версии из pyproject.toml |
 | `BUILD_TROUBLESHOOTING.md` | Устранение неполадок |
 
 ### В корне проекта:
@@ -31,6 +32,8 @@
 | Файл | Изменения |
 |------|-----------|
 | `pyproject.toml` | Добавлен console script, PyInstaller в dev зависимости |
+| `src/test_suite_executor/_version.py` | Создан модуль версионирования |
+| `src/test_suite_executor/runner.py` | Использует _version вместо pyproject.toml |
 | `README.md` | Добавлена документация по сборке |
 
 ## Быстрый старт
@@ -99,3 +102,5 @@ cd test_suite_executor
 - Linux bin собирается на Linux  
 - Универсальный скрипт для автоматического определения ОС
 - Больше не требуется Docker для кроссплатформенной сборки
+- **ИСПРАВЛЕНО**: Проблема с `FileNotFoundError: pyproject.toml` в исполняемых файлах
+- **ДОБАВЛЕНО**: Автоматическое встраивание версии и названия проекта в исполняемые файлы

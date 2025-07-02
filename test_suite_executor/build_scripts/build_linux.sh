@@ -14,21 +14,28 @@ if ! command -v uv &> /dev/null; then
     exit 1
 fi
 
-echo "[1/3] Синхронизация зависимостей (включая dev)..."
+echo "[1/4] Обновление версии из pyproject.toml..."
+python3 "$(dirname "$0")/update_version.py"
+if [ $? -ne 0 ]; then
+    echo "ОШИБКА: Не удалось обновить версию"
+    exit 1
+fi
+
+echo "[2/4] Синхронизация зависимостей (включая dev)..."
 uv sync --dev
 if [ $? -ne 0 ]; then
     echo "ОШИБКА: Не удалось синхронизировать зависимости"
     exit 1
 fi
 
-echo "[2/3] Создание исполняемого файла..."
+echo "[3/4] Создание исполняемого файла..."
 uv run pyinstaller build_scripts/test_suite_executor.spec --clean
 if [ $? -ne 0 ]; then
     echo "ОШИБКА: Не удалось создать исполняемый файл"
     exit 1
 fi
 
-echo "[3/3] Проверка результата..."
+echo "[4/4] Проверка результата..."
 if [ -f "dist/test-suite-executor" ]; then
     echo "✅ Успешно создан: dist/test-suite-executor"
     ls -la dist/test-suite-executor

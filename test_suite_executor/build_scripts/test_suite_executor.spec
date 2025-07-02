@@ -14,7 +14,7 @@ a = Analysis(
     pathex=[str(project_root)],
     binaries=[],
     datas=[
-        (str(project_root / 'pyproject.toml'), '.'),
+        # pyproject.toml больше не нужен, используем _version.py
     ],
     hiddenimports=[
         'test_suite_executor',
@@ -24,6 +24,7 @@ a = Analysis(
         'test_suite_executor.models',
         'test_suite_executor.models.suite',
         'test_suite_executor.settings',
+        'test_suite_executor._version',
         'test_suite.pytest',
         'test_suite.base',
         'uvicorn',
