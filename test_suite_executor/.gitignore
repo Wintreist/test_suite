@@ -1,0 +1,39 @@
+# Файлы сборки PyInstaller
+*.spec
+build/
+dist/
+*.egg-info/
+
+# Временные файлы PyInstaller
+*.manifest
+*.toc
+
+# Виртуальные окружения
+.venv/
+venv/
+ENV/
+env/
+
+# Python кэш
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE файлы
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Логи
+*.log
+
+# Операционная система
+.DS_Store
+Thumbs.db
+
+# Архивы сборки
+*.tar.gz
+*.zip
