@@ -1,0 +1,26 @@
+[project]
+name = "test-suite"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.11.7",
+]
+
+[project.optional-dependencies]
+pytest = [
+    "allure-pytest>=2.14.3",
+    "pytest>=8.3.5",
+    "robo-settings",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+lint.extend-select = ["I"]
+line-length = 125
+
+[tool.uv.sources]
+robo-settings = { git = "ssh://git@src.axxonsoft.dev/qa/python_shared_modules_git.git", subdirectory = "robo_settings", branch = "experemental" }
