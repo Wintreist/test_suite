@@ -17,7 +17,6 @@
 | `test_suite_executor.spec` | Конфигурация PyInstaller |
 | `build_windows.bat` | Сборка Windows exe (только Windows) |
 | `build_linux.sh` | Сборка Linux/macOS bin |
-| `build_all.bat` | Сборка Windows + инструкции для Linux |
 | `build.py` | Универсальный скрипт (автоопределение ОС) |
 | `BUILD_TROUBLESHOOTING.md` | Устранение неполадок |
 
@@ -64,11 +63,7 @@ cd test_suite_executor
 ./build_scripts/build_linux.sh
 ```
 
-**Windows (альтернативно):**
-```cmd
-cd test_suite_executor
-build_scripts\build_all.bat
-```
+
 
 ## Результат
 

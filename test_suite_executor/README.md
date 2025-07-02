@@ -197,11 +197,7 @@ build_scripts\build_windows.bat
 ./build_scripts/build_linux.sh
 ```
 
-**Windows (альтернативный способ):**
-```cmd
-# Сборка только для Windows с инструкциями для Linux
-build_scripts\build_all.bat
-```
+
 
 ### Использование исполняемых файлов
 
