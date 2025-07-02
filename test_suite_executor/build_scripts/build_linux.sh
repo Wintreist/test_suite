@@ -14,28 +14,21 @@ if ! command -v uv &> /dev/null; then
     exit 1
 fi
 
-echo "[1/4] Синхронизация зависимостей..."
-uv sync
+echo "[1/3] Синхронизация зависимостей (включая dev)..."
+uv sync --dev
 if [ $? -ne 0 ]; then
     echo "ОШИБКА: Не удалось синхронизировать зависимости"
     exit 1
 fi
 
-echo "[2/4] Установка PyInstaller..."
-uv add pyinstaller
-if [ $? -ne 0 ]; then
-    echo "ОШИБКА: Не удалось установить PyInstaller"
-    exit 1
-fi
-
-echo "[3/4] Создание исполняемого файла..."
+echo "[2/3] Создание исполняемого файла..."
 uv run pyinstaller build_scripts/test_suite_executor.spec --clean
 if [ $? -ne 0 ]; then
     echo "ОШИБКА: Не удалось создать исполняемый файл"
     exit 1
 fi
 
-echo "[4/4] Проверка результата..."
+echo "[3/3] Проверка результата..."
 if [ -f "dist/test-suite-executor" ]; then
     echo "✅ Успешно создан: dist/test-suite-executor"
     ls -la dist/test-suite-executor

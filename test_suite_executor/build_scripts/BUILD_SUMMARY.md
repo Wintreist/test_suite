@@ -30,7 +30,7 @@
 
 | Файл | Изменения |
 |------|-----------|
-| `pyproject.toml` | Добавлен PyInstaller, создан console script |
+| `pyproject.toml` | Добавлен console script, PyInstaller в dev зависимости |
 | `README.md` | Добавлена документация по сборке |
 
 ## Быстрый старт
