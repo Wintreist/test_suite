@@ -14,7 +14,6 @@ dependencies = [
     "pydantic-settings>=2.10.1",
     "test-suite[pytest]",
     "uvicorn[standard]>=0.35.0",
-    "pyinstaller>=6.0.0",
 ]
 
 [project.scripts]
@@ -27,3 +26,8 @@ build-backend = "hatchling.build"
 [tool.uv.sources]
 test-suite = { path = "../test_suite", editable = true }
 object-storage = { git = "ssh://git@src.axxonsoft.dev/qa/python_shared_modules_git.git", subdirectory = "object_storage", branch = "experemental" }
+
+[dependency-groups]
+dev = [
+    "pyinstaller>=6.0.0",
+]
